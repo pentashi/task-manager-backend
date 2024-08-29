@@ -8,7 +8,7 @@ const app = express();
 const cors = require('cors');
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3001' }));
+app.use(cors({ origin: 'https://task-management-ui-blond.vercel.app' }));
 app.use(express.json());
 
 // Routes
