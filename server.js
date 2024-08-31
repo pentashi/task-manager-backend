@@ -7,8 +7,13 @@ require('dotenv').config(); // Load environment variables from .env file
 const app = express();
 const cors = require('cors');
 
-// Middleware
-app.use(cors({ origin: 'https://task-management-ui-blond.vercel.app' }));
+// Configure CORS
+app.use(cors({
+  origin: ['https://task-management-ui-blond.vercel.app', 'http://localhost:3000'], // Add more origins if needed
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // Routes
