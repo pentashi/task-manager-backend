@@ -9,13 +9,10 @@ const cors = require('cors');
 
 // Configure CORS
 app.use(cors({
-  origin: ['https://task-management-ui-blond.vercel.app', 'http://localhost:3001'], // Add more origins if needed
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: ['https://task-management-ui-blond.vercel.app', 'http://localhost:3001'], // Allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
-
-// Handle preflight requests
-app.options('*', cors());
 
 app.use(express.json());
 
