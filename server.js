@@ -14,7 +14,10 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
 }));
 
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON
+
+// Preflight requests handling
+app.options('*', cors());
 
 // Routes
 app.use('/auth', authRoutes);
