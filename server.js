@@ -7,24 +7,14 @@ require('dotenv').config(); // Load environment variables from .env file
 const app = express();
 const cors = require('cors');
 
-// Middleware
+// Configure CORS
 app.use(cors({
-  origin: 'http://localhost:3001/', // Allow requests from this origin (frontend URL)
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow all HTTP methods
+  origin: 'https://task-management-ui-blond.vercel.app', // Allow requests from this origin (frontend URL)
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Allow all HTTP methods
   credentials: true // Allow credentials (e.g., cookies, authorization headers)
 }));
+
 app.use(express.json());
-
-// Handle preflight requests (OPTIONS)
-app.options('*', cors());
-
-// Manually adding CORS headers (if needed)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001/'); // Allow requests from this origin
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE'); // Allow specific HTTP methods
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Allow specific headers
-  next();
-});
 
 // Routes
 app.use('/auth', authRoutes);
@@ -32,7 +22,6 @@ app.use('/tasks', taskRoutes);
 
 // Get the MongoDB URI and other configurations from environment variables
 const mongoUri = process.env.MONGO_URI;
-const port = process.env.PORT || 3000;
 
 // Ensure mongoUri is defined
 if (!mongoUri) {
@@ -53,6 +42,6 @@ mongoose.connect(mongoUri, {
   });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
