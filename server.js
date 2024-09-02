@@ -11,7 +11,7 @@ const cors = require('cors');
 app.use(cors({
   origin: ['https://task-management-ui-blond.vercel.app', 'http://localhost:3001'], // Allowed origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 }));
 
 app.use(express.json()); // Middleware to parse JSON
